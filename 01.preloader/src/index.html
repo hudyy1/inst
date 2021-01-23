@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=block" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.min.css?v=2">
+</head>
+<body class="body">
+    <div class="pre">
+        <div class="pre-load">
+            LOADING...
+        </div>
+        <div class="pre-line">
+            <div>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wrapper">
+        <span>photo - stock</span>
+        <img src="img/3.jpg" alt="#">
+        <img src="img/5.jpg" alt="#">
+        <img src="img/6.jpg" alt="#">
+    </div>
+    
+    <script>
+        const image = document.querySelectorAll('img');
+        let pre = document.querySelector('.pre'),
+        preLine = pre.querySelector('span'),
+        wrap = document.querySelector('.wrapper');
+        let imageInterval;
+        imageInterval = setInterval(()=> {
+            let f = [];
+            for (let o = 0; o < image.length; o++) {
+                if (image[o].complete) {
+                    f.push(1);
+                } else {
+                    f.push(0)
+                }
+            }
+            let g = f.filter(word => word === 1);
+            let prec = Math.floor((g.length+1)/(f.length+1)*100);
+            preLine.style.width = `${prec}%`;
+            if (f.includes(0) == false) {
+                clearInterval(imageInterval);
+                preLine.addEventListener('transitionend', ()=> {
+                    pre.classList.add('hide');
+                    wrap.classList.add('show');
+                })
+            }
+            f = [];
+        }, 50);
+    </script>
+</body>
+</html>
