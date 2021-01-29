@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=block" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.min.css?v=2">
+</head>
+<body class="body">    
+    <div class="card">
+        <img src="img/1.png" alt="#">
+        <img src="img/2.png" alt="#">
+        <img src="img/3.png" alt="#">
+        <img src="img/4.png" alt="#">
+        <img src="img/5.png" alt="#">
+        <img src="img/6.png" alt="#">
+        <img src="img/7.png" alt="#">
+        <img src="img/8.png" alt="#">
+        <img src="img/9.png" alt="#">
+        <img src="img/10.png" alt="#">
+        <img src="img/11.png" alt="#">
+        <img src="img/12.png" alt="#">
+        <img src="img/13.png" alt="#">
+        <img src="img/14.png" alt="#">
+        <img src="img/15.png" alt="#">
+        <img src="img/16.png" alt="#">
+        <img src="img/1.png" alt="#">
+    </div>
+    
+    <script>
+        let card = document.querySelector('.card'),
+        img = card.querySelectorAll('img'),
+        imgSpan;
+
+        img.forEach(item => {
+            imgSpan = document.createElement('span');
+            imgSpan.classList.add('span');
+            item.before(imgSpan);
+        })
+
+        imgSpan = card.querySelectorAll('span');
+
+        function hideImg() {
+            img.forEach(item => {
+                item.style.display = 'none';
+            });
+        }
+        function showImg(i = 0) {
+            img[i].style.display = 'block';
+        }
+        hideImg();
+        showImg();
+        card.addEventListener('mousemove', (e) => {
+            const target = e.target;
+            if (target && target.closest('span')) {
+                imgSpan.forEach((item, i) => {
+                    if (target == item || target.parentNode == item) {
+                        hideImg();
+                        showImg(i);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
